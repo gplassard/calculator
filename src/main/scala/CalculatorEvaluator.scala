@@ -32,4 +32,16 @@ object CalculatorEvaluator {
       case None => Left(UnknownVariable)
     }
   }
+
+  def evaluateStatement(st: Statement, memory: Memory): Either[EvaluationError, Memory] = st match {
+    case VariableDefinition(name, ex) => for {
+      res <- evaluateExpression(ex, memory)
+    } yield memory.copy(variables = memory.variables + (name -> res))
+  }
+
+  def evaluate(grammar: Grammar, memory: Memory): Either[EvaluationError, (Option[Double], Memory)] = grammar match {
+    case expression: Expression => evaluateExpression(expression, memory).map(r => Some(r) -> memory)
+    case statement: Statement => evaluateStatement(statement, memory).map(m => None -> m)
+  }
+
 }
