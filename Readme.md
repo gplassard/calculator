@@ -1,3 +1,36 @@
+# Calculator
+
+Demo project of a simple calculator REPL.
+
+Supports
+* integer literals : `1`
+* addition (requires to wrap in parentheses) : `(1 + 2)`
+* multiplication (requires to wrap in parentheses) : `(1 * 2)`
+* division (requires to wrap in parentheses) : `(12 / 2)`
+* variable definitions : `const variableName = (1 + 5)`
+* variable usage : `(variableName + 2)`
+* to exit : `:quit`
+
+# References
+
+Inspired by https://github.com/madjar/talk-scala-parser-combinators
+
+Relies on [scala parser combinators](https://github.com/scala/scala-parser-combinators) 
+
+
+# Requirements
+
+* [sbt](https://www.scala-sbt.org/download/) (tested with sbt 1.10.4)
+* a JDK (tested with JDK 21) (can be installed through [SDKMAN](https://sdkman.io/usage/))
+
+# Usage
+
+```
+sbt run
+```
+
+# Example
+
 ```
 input> 1 + 2
 Parsing error : [1.1] failure: 'const ' expected but '1' found
@@ -47,4 +80,5 @@ Memory state :
 b: 1.0
 a: 7.0
 c: 28.0
+input> :quit
 ```
